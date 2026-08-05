@@ -1,4 +1,4 @@
-- name: roboshop instances management
+- name: expense instances management
   hosts: local
   connection: local
   vars:
@@ -10,11 +10,11 @@
   - name: create ec2 instances
     amazon.aws.ec2_instance:
       instance_type: t3.micro
-      name: "roboshop-{{ item }}"
+      name: "expense-{{ item }}"
       image_id: "{{ image_id }}"
       security_groups:
-      - "roboshop-{{ item }}"
-      - "roboshop-common"
+      - "expense-{{ item }}"
+      - "expense-common"
     loop: "{{ instances }}"
     register: ec2_output
     when: action == "create"
@@ -78,7 +78,7 @@
   - name: delete ec2 instances
     amazon.aws.ec2_instance:
       state: absent
-      name: "roboshop-{{ item }}"
+      name: "expense-{{ item }}"
       wait: false
     loop: "{{ instances }}"
     when: action == "delete"
