@@ -2,4 +2,4 @@ ansible_user: ec2-user
 ansible_password: DevOps321
 MYSQL_HOST: mysql.anu90.shop
 BACKEND_HOST: backend.anu90.shop
-PAYMENT_HOST: payment.anu90.shop
+FRONTEND_HOST: frontend.anu90.shop
