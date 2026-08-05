@@ -33,7 +33,7 @@
     path: /etc/nginx/default.d/expense.conf
     state: absent
 - name: copy nginx conf
-  copy:
+  template:
     src: expense.conf.j2 
     dest: /etc/nginx/default.d/expense.conf
 - name: restart nginx
