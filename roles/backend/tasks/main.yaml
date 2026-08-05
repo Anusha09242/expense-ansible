@@ -8,4 +8,20 @@
     name: common
     tasks_from: app-setup
 
-- name: 
+- name: systemd setup
+  import_role:
+    name: common
+    tasks_from: systemd-setup
+
+- name: install mysql
+  package:
+    name: mysql
+    state: present
+
+- name: daemon reload
+  systemd_service:
+    name: mysql
+    state: restarted
+    daemon_reload: true
+    enabled: true
+    
