@@ -23,11 +23,15 @@
 
 - name: download {{ component }} zip file
   get_url:
-    url: https://expense-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
-    dest: /tmp/{{ component }}.zip
+    url: https://raw.githubusercontent.com/daws-90s/expense-documentation/refs/heads/main/artifacts/expense-"{{ component }}"-v3.tar.gz
+    dest: /tmp/"{{ component }}".tar.gz
 
 - name: unzip {{ component }} file
   unarchive:
-    src: /tmp/{{ component }}.zip
+    src: /tmp/"{{ component }}".tar.gz
     dest: /app 
     remote_src: yes
+
+- name: install dependencies
+  community.general.npm:
+    path: /app
