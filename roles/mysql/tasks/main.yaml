@@ -2,12 +2,20 @@
   package:
     name: mysql-server
     state: present
+
 - name: setup root password
   command: mysql_secure_installation --set-root-pass "{{ mysql_root_password }}"
+
 - name: install mysql
   package:
     name: mysql
     state: present
+
+- name: install python dependencies
+  pip:
+    name: PyMySQL
+    executable: pip3.9
+
 - name: load mysql data
   community.mysql.mysql_db:
     state: import
@@ -16,6 +24,7 @@
     login_password: "{{ mysql_root_password }}"
     login_host: "{{ MYSQL_HOST }}"
     target: /app/schema/backend.sql
+    
 - name: restart
   import_role:
     name: common
