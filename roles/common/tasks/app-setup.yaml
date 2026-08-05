@@ -23,12 +23,12 @@
 
 - name: download {{ component }} zip file
   get_url:
-    url: https://raw.githubusercontent.com/daws-90s/expense-documentation/refs/heads/main/artifacts/expense-"{{ component }}"-v3.tar.gz
+    url: https://raw.githubusercontent.com/daws-90s/expense-documentation/refs/heads/main/artifacts/expense-{{ component }}-v3.tar.gz
     dest: /tmp/"{{ component }}".tar.gz
 
 - name: unzip {{ component }} file
   unarchive:
-    src: /tmp/"{{ component }}".tar.gz
+    src: /tmp/{{ component }}.tar.gz
     dest: /app 
     remote_src: yes
 
