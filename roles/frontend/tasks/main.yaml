@@ -27,6 +27,7 @@
   unarchive:
     src: /tmp/frontend.tar.gz
     dest: /usr/share/nginx/html
+    remote_src: yes
 - name: delete nginx default conf
   file:
     path: /etc/nginx/default.d/expense.conf
