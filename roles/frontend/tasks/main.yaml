@@ -2,11 +2,6 @@
   package:
     name: nginx
     state: present
-- name: enable and start nginx
-  service:
-    name: nginx
-    enabled: yes
-    state: started
 - name: remove html file
   file:
     path: /usr/share/nginx/html
@@ -36,7 +31,4 @@
   template:
     src: expense.conf.j2 
     dest: /etc/nginx/default.d/expense.conf
-- name: restart nginx
-  service:
-    name: nginx
-    state: restarted
+- notify: restart nginx
