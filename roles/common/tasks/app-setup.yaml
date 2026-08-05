@@ -1,10 +1,10 @@
 - name: create system user
   user:
-    name: roboshop
+    name: expense
     system: true
     home: /app
     shell: /sbin/nologin
-    comment: roboshop system user
+    comment: expense system user
 
 - name: remove app directory
   file: 
@@ -23,7 +23,7 @@
 
 - name: download {{ component }} zip file
   get_url:
-    url: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
+    url: https://expense-artifacts.s3.amazonaws.com/{{ component }}-v3.zip
     dest: /tmp/{{ component }}.zip
 
 - name: unzip {{ component }} file
