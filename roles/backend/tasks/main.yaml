@@ -18,10 +18,8 @@
     name: mysql
     state: present
 
-- name: daemon reload
-  systemd_service:
-    name: mysql
-    state: restarted
-    daemon_reload: true
-    enabled: true
+- name: restart
+  import_role:
+    name: common
+    tasks_from: restart
     
