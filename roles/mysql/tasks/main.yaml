@@ -3,6 +3,12 @@
     name: mysql-server
     state: present
 
+- name: enable and start mysqld
+  service:
+    name: mysqld
+    enabled: yes
+    state: started
+
 - name: install mysql
   package:
     name: mysql
@@ -12,26 +18,9 @@
   pip:
     name: PyMySQL
     executable: pip3.9
-- name: enable and start mysqld
-
-  service:
-    name: mysqld
-    enabled: yes
-    state: started
 
 - name: setup root password
   command: mysql_secure_installation --set-root-pass "{{ mysql_root_password }}"
-  args:
-    creates: /root/.mysql_password_set
-
-- name: load mysql data
-  community.mysql.mysql_db:
-    state: import
-    name: all
-    login_user: "{{ mysql_login_user }}"
-    login_password: "{{ mysql_root_password }}"
-    login_host: "{{ MYSQL_HOST }}"
-    target: /app/schema/backend.sql
 
 - name: restart
   import_role:
